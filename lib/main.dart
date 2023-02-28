@@ -1,59 +1,32 @@
+import 'package:capstone_automation/auth/email_verify_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    name: "Capstone Automation",
+    options: const FirebaseOptions(
+      apiKey: "AIzaSyB7vVd3bmNvYpBgk1NDe54f5XRge_91sss",
+      appId: "1:139858468612:web:2043488c1d40d064587a51",
+      messagingSenderId: "139858468612",
+      projectId: "capstone-automation",
+      //databaseURL: "https://capstone-automation.firebaseio.com",
+    ),
+  );
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: Container(
-          color: Color.fromARGB(255, 255, 255, 255),
-          child: Center(
-            child: Card(
-              color: Color(0xFFD1CBCB),
-              shape: RoundedRectangleBorder(
-                side: BorderSide(color: Color.fromARGB(255, 29, 255, 37)),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Container(
-                width: 480,
-                height: 551,
-                padding: EdgeInsets.all(20),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const TextField(
-                      decoration: InputDecoration(
-                        hintText: 'Email',
-                        filled: true,
-                        fillColor: Colors.white,
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    const TextField(
-                      decoration: InputDecoration(
-                        hintText: 'Name',
-                        filled: true,
-                        fillColor: Colors.white,
-                      ),
-                    ),
-                    SizedBox(height: 70),
-                    ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(),
-                      child: const Text(
-                        'Sign up',
-                        selectionColor: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
+        backgroundColor: Color(0xff2F4865),
+        body: EmailVerifyScreen(),
       ),
     );
   }
